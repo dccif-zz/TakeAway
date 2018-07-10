@@ -18,5 +18,11 @@ public class Food implements Serializable {
 
     private Double price;
 
+    private Integer remainder;
+
     private String comment;
+
+    @OneToOne(targetEntity = Kind.class)
+    @JoinColumn(name = "kind_id", referencedColumnName = "kind_id", unique = true)
+    private Kind kind;
 }
