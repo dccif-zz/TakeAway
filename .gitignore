@@ -82,3 +82,6 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
+/gradle/wrapper/gradle-wrapper.jar
+/takeawayapk/gradle/wrapper/gradle-wrapper.jar
+/foodservice/src/main/java/top/dccif/foodservice/config
