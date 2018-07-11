@@ -5,7 +5,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     # 开启Mysql的外键支持
     properties:
       hibernate:

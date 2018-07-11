@@ -16,7 +16,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(length = 32)
+    @Column(length = 32, unique = true)
     private String username;
 
     @Column(length = 64)
@@ -36,10 +36,14 @@ public class User implements Serializable {
 
     private String avatarUrl;
 
-    @OneToMany(targetEntity = Address.class)
-    @JoinColumn(name = "address_id", referencedColumnName = "user_id")
+    @OneToMany(targetEntity = Address.class,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private Set<Address> address = new HashSet<>();
 
-    @OneToMany(targetEntity = UserOrder.class, mappedBy = "user")
+    @OneToMany(targetEntity = UserOrder.class, mappedBy = "user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<UserOrder> orders = new HashSet<>();
 }
