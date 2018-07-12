@@ -2,7 +2,7 @@
   <div class="fillcontain">
     <template>
       <el-button type="primary"
-                 @click="handleEdit({type:'addUser'})" style="margin: 10px">添加用户
+                 @click="addUser" style="margin: 10px">添加用户
       </el-button>
     </template>
     <div class="table_container">
@@ -46,7 +46,7 @@
         </el-table-column>
       </el-table>
       <el-dialog title="修改用户信息" :visible.sync="dialogFormVisible">
-        <el-form :model="selectRow" ref="selectFrom">
+        <el-form :model="selectRow" ref="selectRow">
           <el-form-item label="用户名" prop="username"
                         :rules="[{required:true}]">
             <el-input v-model="selectRow.username"></el-input>
@@ -70,21 +70,20 @@
                         {type:'email',message:'请输入正确邮箱',trigger:['blur','change']}]">
             <el-input v-model="selectRow.email"></el-input>
           </el-form-item>
-          <!--<el-form-item label="地址" prop="address">-->
-          <!--<el-input v-model="selectRow.address"></el-input>-->
-          <!--<el-button @click="addAddress">新增地址</el-button>-->
-          <!--</el-form-item>-->
           <el-form-item
             v-for="(address,index) in selectRow.address "
             :label="'地址'+index"
             :key="address.key"
             :prop="'address['+index+'].detail'">
             <el-input v-model="address.detail"></el-input>
-            <el-button @click.prevent="removeAddress(address)">删除</el-button>
+            <el-button @click.prevent="removeAddress(index)">删除</el-button>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="updateTicket('selectRow')">提交</el-button>
-            <el-button @click="dialogFormVisible = !dialogFormVisible">取消</el-button>
+            <el-button @click="addAddress">新增地址</el-button>
+          </el-form-item>
+          <el-form-item v-model="selectType">
+            <el-button type="primary" @click="updateTicket('selectRow',selectType)">提交</el-button>
+            <el-button @click="disableDialog('selectRow',selectType)">取消</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
@@ -93,7 +92,7 @@
 </template>
 
 <script>
-  import { getAllUser, deleteUserById, uploadUser } from '../tools/myUtil'
+  import { getAllUser, deleteUserById, uploadUser, postUser } from '../tools/myUtil'
 
   export default {
     data () {
@@ -110,6 +109,8 @@
             detail: ''
           }]
         },
+        upType: ['addUser', 'changUser'],
+        selectType: [],
         currentRow: null,
         offset: 0,
         limit: 20,
@@ -121,6 +122,7 @@
       this.initData()
     },
     methods: {
+      // 初始化数据
       async initData () {
         try {
           this.getUsers()
@@ -128,40 +130,67 @@
           console.log('获取数据失败', err)
         }
       },
-      // 修改 条件 二合一 方法
-      handleEdit (index, row) {
+      changeDialogDisplay () {
         this.dialogFormVisible = !this.dialogFormVisible
-        // 判断是否为添加用户
-        if (index['type'] === 'addUser') {
-          this.selectRow = {}
-          this.$refs['selectFrom'].resetFields()
+      },
+      // 修改 添加 用户
+      handleEdit (index, row) {
+        this.changeDialogDisplay()
+        this.selectRow = row
+        this.selectType = this.upType[1]
+      },
+      addUser () {
+        this.changeDialogDisplay()
+        this.selectRow = {
+          username: '',
+          nickname: '',
+          gender: '',
+          mobile: '',
+          address: [{
+            detail: ''
+          }]
         }
-        if (row !== undefined) {
-          this.selectRow = row
-        }
+        this.$refs['selectRow'].resetFields()
+        this.selectType = this.upType[0]
       },
       addAddress () {
         this.selectRow.address.push({
           detail: '',
         })
       },
-      removeAddress () {
-
+      removeAddress (item) {
+        this.selectRow.address.splice(item - 1, 1)
       },
-      updateTicket (formData) {
-        console.log('update data: ', this[formData])
-        uploadUser(this[formData]).then(() => {
-          this.$message({
-            message: '提交成功',
-            type: 'success'
+      disableDialog (index, type) {
+        this.changeDialogDisplay()
+        console.log('index type:', this[index], type)
+        this.initData()
+      },
+      updateTicket (formData, type) {
+        console.log('update data: ', this[formData], type)
+        if (type === 'changUser') {
+          uploadUser(this[formData]).then(() => {
+            this.$message({
+              message: '提交成功',
+              type: 'success'
+            })
+          }).catch((err) => {
+            this.$message({
+              message: '删除失败',
+              type: 'error'
+            })
+            console.log(err)
           })
-        }).catch((err) => {
-          this.$message({
-            message: '删除失败',
-            type: 'error'
+        }
+        if (type === 'addUser') {
+          console.log('post data: ', this[formData], type)
+          postUser(this[formData]).then(() => {
+            this.$message({
+              message: '添加成功',
+              type: 'success'
+            })
           })
-          console.log(err)
-        })
+        }
       },
       async handleDelete (index, row) {
         console.log('index,row: ', index, row)
@@ -180,8 +209,7 @@
             type: 'error'
           })
         }
-      }
-      ,
+      },
       async getUsers () {
         // const Users = await getUserList({offset: this.offset, limit: this.limit})
         let requesetData = await

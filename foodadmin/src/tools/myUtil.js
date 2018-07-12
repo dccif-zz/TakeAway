@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Qs from 'qs'
 
 let tempUrl = 'http://localhost:8083'
 
@@ -20,8 +21,18 @@ export const deleteUserById = async (id) => {
 }
 
 export const uploadUser = (row) => {
-  console.log("updaterow: ", row)
+  console.log('updaterow: ', row)
   return axios.put(tempUrl + '/updateUser', row).then((response) => {
     console.log(response)
+  })
+}
+
+export const postUser = (formData) => {
+  let formdata = Qs.stringify(formData)
+  console.log('formdata', formdata)
+  return axios.post(tempUrl + '/addUser', formdata).then((response) => {
+    console.log(response)
+  }).catch((err) => {
+    console.log(err)
   })
 }

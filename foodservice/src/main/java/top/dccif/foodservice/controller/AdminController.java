@@ -1,10 +1,12 @@
 package top.dccif.foodservice.controller;
 
 import org.springframework.web.bind.annotation.*;
+import top.dccif.foodservice.domain.Address;
 import top.dccif.foodservice.domain.User;
 import top.dccif.foodservice.service.UserService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class AdminController {
@@ -22,6 +24,7 @@ public class AdminController {
 
     @PostMapping("/addUser")
     public User save(User user) {
+        Set<Address> sed = user.getAddress();
         return userService.save(user);
     }
 
