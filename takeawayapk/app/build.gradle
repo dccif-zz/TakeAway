@@ -24,7 +24,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "top.dccif.takeawayapk"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -43,7 +47,22 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'se.emilsjolander:stickylistheaders:2.7.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
+//    // 网络通信框架
+//    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+//    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+//    // google工具库
+//    implementation 'com.google.guava:guava:18.0'
+//    implementation 'com.google.code.gson:gson:2.6.1'
+//    // View注入框架
+//    implementation 'com.jakewharton:butterknife:7.0.1'
+//    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
+//    // lombok 工具
+    compileOnly 'org.projectlombok:lombok:1.18.0'
+    annotationProcessor 'org.projectlombok:lombok:1.18.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

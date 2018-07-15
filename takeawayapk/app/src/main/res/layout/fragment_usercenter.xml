@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey"
+    android:orientation="vertical"
+    tools:context="top.dccif.takeawayapk.fragment.UsercenterFragment">
+
+    <LinearLayout
+        android:id="@+id/header_not_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@mipmap/r2"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/r0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="登陆/注册" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:elevation="1dp"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <Button
+                android:id="@+id/button_wallet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:drawableTop="@mipmap/wallet"
+                android:text="我的钱包" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGrey" />
+
+            <Button
+                android:id="@+id/button_red_pocket"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:drawableTop="@mipmap/red_pocket"
+                android:text="红包" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorGrey" />
+
+            <Button
+                android:id="@+id/button_voucher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:drawableTop="@mipmap/voucher"
+                android:text="代金券" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/header_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/avatar_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@mipmap/r2"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/r1" />
+
+            <TextView
+                android:id="@+id/username_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="登陆/注册" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:elevation="1dp"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <Button
+                android:id="@+id/button_wallet_small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:drawableTop="@mipmap/wallet"
+                android:text="我的钱包" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGrey" />
+
+            <Button
+                android:id="@+id/button_red_pocket_small"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:drawableTop="@mipmap/red_pocket"
+                android:text="红包" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorGrey" />
+
+            <Button
+                android:id="@+id/button_voucher_small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:drawableTop="@mipmap/voucher"
+                android:text="代金券" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:elevation="1dp"
+        android:orientation="vertical"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/usercenter_menu_height"
+            android:background="@android:color/white"
+            android:drawableEnd="@mipmap/menu_arrow_right"
+            android:drawableStart="@mipmap/ic_comment"
+            android:text="我的评价"
+            android:textAlignment="textStart" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/usercenter_menu_height"
+            android:background="@android:color/white"
+            android:drawableEnd="@mipmap/menu_arrow_right"
+            android:drawableStart="@mipmap/ic_favor"
+            android:text="我的收藏"
+            android:textAlignment="textStart" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrey" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/usercenter_menu_height"
+            android:background="@android:color/white"
+            android:drawableEnd="@mipmap/menu_arrow_right"
+            android:drawableStart="@mipmap/ic_address"
+            android:text="我的地址"
+            android:textAlignment="textStart" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:elevation="1dp"
+        android:orientation="vertical"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/usercenter_menu_height"
+            android:background="@android:color/white"
+            android:drawableEnd="@mipmap/menu_arrow_right"
+            android:drawableStart="@mipmap/ic_etc"
+            android:elevation="0dp"
+            android:text="更多"
+            android:textAlignment="textStart" />
+    </LinearLayout>
+</LinearLayout>

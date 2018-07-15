@@ -1,5 +1,5 @@
 rootProject.name='TakeAway'
 
 include 'foodservice'
-include 'takeawayapk'
-include 'takeawayapk:app'
+//include 'takeawayapk'
+//include 'takeawayapk:app'

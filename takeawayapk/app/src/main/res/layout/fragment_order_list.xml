@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="top.dccif.takeawayapk.fragment.OrderListFragment">
+
+    <top.dccif.takeawayapk.TopBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topbar_height"
+        android:background="@color/colorPrimary"
+        android:title="订单"></top.dccif.takeawayapk.TopBar>
+
+    <LinearLayout
+        android:id="@+id/view_not_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="-40dp"
+            android:src="@mipmap/tk" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/order_list_info_not_login" />
+
+        <Button
+            android:id="@+id/order_list_login"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            android:text="登陆/注册"
+            android:textColor="@color/colorTextInPrimaryColor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/view_order_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/order_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/order_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
